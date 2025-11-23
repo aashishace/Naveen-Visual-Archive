@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF3B30;
+}
+
+body {
+  background-color: #030303;
+  cursor: none; /* Custom cursor used */
+}
+
+/* Utility for text stroke */
+.text-stroke-1 {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+.text-stroke-2 {
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+}
+
+/* Glitch Animation Keyframes */
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+  100% { clip-path: inset(30% 0 30% 0); transform: translate(1px, -1px); }
+}
+
+.glitch-active::before, .glitch-active::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #030303;
+}
+.glitch-active::before {
+  left: 2px;
+  text-shadow: -1px 0 #FF3B30;
+  clip-path: inset(0);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+.glitch-active::after {
+  left: -2px;
+  text-shadow: -1px 0 #00FFFF;
+  clip-path: inset(0);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  animation-delay: 1s;
+}
